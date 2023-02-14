@@ -1,0 +1,25 @@
+﻿@model int
+
+
+@if (Model > 0)
+{
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-controller="Cart" asp-action="CartView">
+            <i class="bi bi-cart4"></i> @Model
+        </a>
+    </li>
+}
+
+
+@*
+<div class="navbar-right">
+    @Html.ActionLink("Checkout","Index","Cart",
+    new { @class="btn btn-defualt navbar-btn"})
+</div>
+<div class="navbar-text navbar-right">
+    <b>Your Cart:</b>
+    @Model.CartLines.Sum(p=>p.Quantity) Prodect(s),
+    @Model.Total.ToString("c")
+</div>
+
+*@

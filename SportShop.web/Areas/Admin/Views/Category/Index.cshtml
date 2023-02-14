@@ -1,0 +1,34 @@
+﻿@model SportShop.DataAccess.ViewModels.CategoryVm
+
+<div>
+    <h2>Category</h2>
+</div>
+<div>
+    <a class="btn" asp-action="CreateUpdate">Create New Category</a>
+</div>
+<div>
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Priority</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model.categories)
+                {
+                    <tr>
+                        <th>@item.Name</th>
+                        <th>@item.Priority</th>
+                        <th>
+                            <a asp-action="Createupdate" asp-route-id="@item.Id">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

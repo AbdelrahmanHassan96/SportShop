@@ -1,0 +1,58 @@
+﻿@model SportShop.DataAccess.ViewModels.ProductVm
+
+<div>
+    <h2>Products</h2>
+</div>
+<div>
+    <a class="btn" asp-action="CreateUpdate">Create New Product</a>
+</div>
+<div>
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>QuantityPerUnit</th>
+                    <th>UnitPrice</th>
+                    <th>UnitsInStock</th>
+                    <th>UnitsOnOrder</th>
+                    <th>ReorderLevel</th>
+                    <th>Discontinued</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.products)
+                {
+
+                    <tr>
+                        <th>@item.Name</th>
+                        @if(item.ImgUrl!=null)
+                        {
+                            <th><img src="/Images/@item.ImgUrl" style="width:60px" class="img-thumbnail" /></th>
+                        }
+                        else
+                        {
+                            <th>No Image</th>
+                        }
+                        <th>@item.QuantityPerUnit</th>
+                        <th>@item.UnitPrice</th>
+                        <th>@item.UnitsInStock</th>
+                        <th>@item.UnitsOnOrder</th>
+                        <th>@item.ReorderLevel</th>
+                        <th>@item.Discontinued</th>
+                        <th>@item.Description</th>
+                        <th>@item.category.Name</th>
+                        <th>
+                            <a class="btn" asp-action="Createupdate" asp-route-id="@item.Id">Edit</a>
+                            <a class="btn" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

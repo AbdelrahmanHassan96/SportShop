@@ -1,0 +1,36 @@
+﻿@model SportShop.DataAccess.ViewModels.CategoryVm
+
+<form method="post" asp-action="CreateUpdate" asp-controller="Category">
+    <input type="hidden" asp-for="@Model.category.Id"/>
+<div>
+    <h2>@((Model.category==null||Model.category.Id==0)?"Create ":"Update") Category</h2>
+</div>
+<div asp-validation-summary=All></div>
+<div>
+    <div >
+        <label asp-for="@Model.category.Name"></label>
+        <input asp-for="@Model.category.Name" class="form-control" />
+        <span asp-validation-for="@Model.category.Name" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="@Model.category.Priority"></label>
+        <input asp-for="@Model.category.Priority" class="form-control" />
+        <span asp-validation-for="@Model.category.Priority" class="text-danger"></span>
+    </div>
+    @if(Model.category.Id==0||Model.category==null)
+    {
+        <button class="btn" type="submit">Create</button>
+    }
+    else
+    {
+        <button class="btn" type="submit">Update</button>
+    }
+</div>
+</form>
+<a asp-action="Index">Back To List</a>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

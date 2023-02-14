@@ -1,0 +1,53 @@
+﻿@model SportShop.Models.Cart
+
+<h2>Cart Details</h2>
+
+<div>
+    <div class="">
+        <table class="table" >
+            <thead>
+                <tr>
+                    <th>product Picture</th>
+                    <th>product Name</th>                    
+                    <th>Quantity</th>
+                    <th class="text-right">product price</th>
+                    <th class="text-right">SubTotal</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var line in Model.CartLines)
+                {
+                    <tr>
+                        <td>
+                            <img src="~/Images/@line.Product.ImgUrl" class="img-thumbnail" style="width:40px; height:64px;" />
+                        </td>
+                        <td class="text-left">@line.Product.Name</td>
+                        <td class="text-left">@line.Quantity</td>
+                        <td class="text-right">@line.Product.UnitPrice.ToString("c")</td>
+                        <td class="text-right">@((line.LinePrice).ToString("c"))</td>
+
+                        <td>
+                            <a class="btn btn-warning btn-sm" asp-action="RemoveItem" asp-controller="Cart" asp-route-productId="@line.Product.Id">Remove</a>
+                        </td>
+
+                    </tr>
+
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td onclose="3" class="text-right">Total : </td>
+                    <td class="text-right">
+                        @Model.Total.ToString("c")
+                    </td>
+
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="text-center">
+        @Html.ActionLink("Checkout Now","Checkout",null,new { @class="btn btn-primary"})
+    </div>
+</div>

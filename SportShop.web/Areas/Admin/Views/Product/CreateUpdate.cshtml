@@ -1,0 +1,80 @@
+﻿@model SportShop.DataAccess.ViewModels.ProductVm
+
+<form method="post" asp-action="CreateUpdate" asp-controller="Product" enctype="multipart/form-data">
+    <input type="hidden" asp-for="@Model.product.Id" />
+    <div>
+        <h2>@((Model.product == null || Model.product.Id == 0) ? "Create " : "Update") Product</h2>
+    </div>
+    <div asp-validation-summary=All></div>
+    <div>
+        <div>
+            <label asp-for="@Model.product.ImgUrl"></label>
+            <input type="file" name="File" asp-for="@Model.product.ImgUrl" class="form-control" />
+            <span asp-validation-for="@Model.product.Name" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="@Model.product.Name"></label>
+            <input asp-for="@Model.product.Name" class="form-control" />
+            <span asp-validation-for="@Model.product.Name" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="@Model.product.QuantityPerUnit"></label>
+            <input asp-for="@Model.product.QuantityPerUnit" class="form-control" />
+            <span asp-validation-for="@Model.product.QuantityPerUnit" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="@Model.product.UnitPrice"></label>
+            <input asp-for="@Model.product.UnitPrice" class="form-control" />
+            <span asp-validation-for="@Model.product.UnitPrice" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="@Model.product.UnitsInStock"></label>
+            <input asp-for="@Model.product.UnitsInStock" class="form-control" />
+            <span asp-validation-for="@Model.product.UnitsInStock" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="@Model.product.UnitsOnOrder"></label>
+            <input asp-for="@Model.product.UnitsOnOrder" class="form-control" />
+            <span asp-validation-for="@Model.product.UnitsOnOrder" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="@Model.product.ReorderLevel"></label>
+            <input asp-for="@Model.product.ReorderLevel" class="form-control" />
+            <span asp-validation-for="@Model.product.ReorderLevel" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="@Model.product.Discontinued"></label>
+            @*<input name="AreChecked" type="checkbox" value="@Model.product.Discontinued" />*@
+            <input name="@Model.product.Discontinued" type="checkbox" @*value="@Model.product.Discontinued"*@ asp-for="@Model.product.Discontinued" />
+            <span asp-validation-for="@Model.product.Discontinued" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="@Model.product.Description"></label>
+            <input asp-for="@Model.product.Description" class="form-control" />
+            <span asp-validation-for="@Model.product.Description" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="@Model.product.CategoryId"></label>
+            <select asp-for="@Model.product.CategoryId" asp-items="@Model.categories">
+                <option selected disabled>Select Category</option>
+            </select>
+            <span asp-validation-for="@Model.product.Description" class="text-danger"></span>
+        </div>
+        
+        @if (Model.product.Id == 0 || Model.product == null)
+        {
+            <button class="btn" type="submit">Create</button>
+        }
+        else
+        {
+            <button class="btn" type="submit">Update</button>
+        }
+    </div>
+</form>
+<a class="btn" asp-action="Index">Back To List</a>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
